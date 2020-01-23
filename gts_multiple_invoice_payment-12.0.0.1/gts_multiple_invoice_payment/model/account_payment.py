@@ -278,7 +278,6 @@ class AccountPayment(models.Model):
         move.post()
         return move
 
-    @api.one
     @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         default = dict(default or {})
