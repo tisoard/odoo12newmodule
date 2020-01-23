@@ -2,7 +2,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
-
+#removing all @api.multi
 class PaymentInvoiceLine(models.Model):
     _name = 'payment.invoice.line'
 
