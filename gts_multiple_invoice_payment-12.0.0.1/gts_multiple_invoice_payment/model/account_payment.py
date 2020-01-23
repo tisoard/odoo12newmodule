@@ -16,7 +16,6 @@ class PaymentInvoiceLine(models.Model):
     date_invoice = fields.Date('Invoice Date')
     select = fields.Boolean('Select', help="Click to select the invoice")
 
-    @api.multi
     @api.constrains('amount')
     def _check_amount(self):
         for line in self:
