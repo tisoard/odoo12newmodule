@@ -56,7 +56,6 @@ class AccountPayment(models.Model):
         store=True, string='Assigned Amount')
     balance = fields.Float(compute='_compute_balance', string='Balance')
 
-    @api.multi
     @api.depends('invoice_lines', 'invoice_lines.amount', 'amount')
     def _compute_balance(self):
         for payment in self:
@@ -69,7 +68,6 @@ class AccountPayment(models.Model):
                 balance = payment.amount - total
             payment.balance = balance
 
-    @api.multi
     @api.depends('invoice_lines', 'invoice_lines.amount', 'amount')
     def compute_selected_invoice_total(self):
         for payment in self:
@@ -150,7 +148,6 @@ class AccountPayment(models.Model):
             for line in self.invoice_lines:
                 line.amount = 0.0
 
-    @api.multi
     @api.constrains('amount', 'invoice_lines')
     def _check_invoice_amount(self):
         ''' Function to validate if user has selected more amount invoices than payment '''
